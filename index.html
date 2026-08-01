@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enilive VIP</title>
+
+<meta name="description" content="VIP Code für Bedienstete der Stadtgemeinde Imst – Enilive Station Venier Imst.">
+<meta name="theme-color" content="#0b7fa8">
+<link rel="manifest" href="manifest.webmanifest">
+
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Enilive VIP">
+<link rel="icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --teal:#1aab9b; --cyan:#0099cc; --blue:#0077bb; --ink:#0b3a52;
+    --font:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+
+  body{
+    font-family:var(--font); color:#fff;
+    background:linear-gradient(45deg,var(--teal) 0%,var(--cyan) 50%,var(--blue) 100%);
+    background-attachment:fixed;
+    min-height:100dvh;
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+    gap:clamp(18px,4vh,34px);
+    padding:calc(env(safe-area-inset-top) + clamp(28px,5vh,48px))
+            clamp(20px,6vw,32px)
+            calc(env(safe-area-inset-bottom) + clamp(22px,4vh,34px));
+    overflow-x:hidden;
+  }
+  body::before{
+    content:''; position:fixed; top:-30%; right:-25%;
+    width:80vmax; height:80vmax;
+    background:radial-gradient(circle,rgba(255,255,255,.14) 0%,transparent 62%);
+    pointer-events:none;
+  }
+
+  header{display:flex;flex-direction:column;align-items:center;gap:13px;
+         animation:rise .55s cubic-bezier(.22,.7,.3,1) both}
+  header img{width:clamp(80px,22vw,104px);height:auto;display:block}
+
+  h1{
+    font-size:clamp(21px,5.6vw,26px);
+    font-weight:700; letter-spacing:.02em; line-height:1;
+  }
+  .sub{
+    font-size:clamp(14.5px,4.2vw,17px); font-weight:500;
+    color:rgba(255,255,255,.92); text-align:center; line-height:1.35;
+    max-width:19ch;
+  }
+
+  .code{
+    background:#fff; border-radius:22px; padding:clamp(16px,4.5vw,24px);
+    box-shadow:0 24px 60px rgba(0,40,70,.30),0 6px 18px rgba(0,40,70,.18);
+    animation:rise .55s cubic-bezier(.22,.7,.3,1) .08s both;
+  }
+  .code img{display:block;width:min(56vw,224px);height:auto;image-rendering:pixelated}
+  .code figcaption{
+    margin-top:clamp(10px,2.4vw,14px); text-align:center;
+    font-size:clamp(13px,3.6vw,15px); font-weight:600; letter-spacing:.16em;
+    color:var(--ink); font-variant-numeric:tabular-nums;
+  }
+
+  .perks{
+    width:100%;
+    display:grid; grid-template-columns:1fr 1px 1fr;
+    align-items:center;
+    padding:13px 8px; border-radius:13px;
+    background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.26);
+  }
+  .perks i{background:rgba(255,255,255,.3);height:70%;width:1px;display:block}
+  .perks div{text-align:center;padding:0 6px}
+  .perks b{
+    display:block; font-size:clamp(16px,4.4vw,19px); font-weight:700;
+    letter-spacing:-.01em; line-height:1.1;
+  }
+  .perks span{
+    display:block; margin-top:3px;
+    font-size:clamp(11px,3vw,12.5px); font-weight:500;
+    color:rgba(255,255,255,.85); line-height:1.25;
+  }
+
+  .foot{
+    width:100%; max-width:420px;
+    display:flex; flex-direction:column; align-items:center;
+    gap:clamp(12px,2.4vh,18px);
+    animation:rise .55s cubic-bezier(.22,.7,.3,1) .16s both;
+  }
+  .station{text-align:center}
+  .station b{display:block;font-size:clamp(16px,4.4vw,19px);font-weight:700}
+  .station span{display:block;margin-top:4px;font-size:clamp(13px,3.6vw,15px);
+                font-weight:400;color:rgba(255,255,255,.85)}
+
+  .notice{
+    width:100%; display:flex; gap:9px; align-items:flex-start;
+    padding:11px 16px; border-radius:11px;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.26);
+    font-size:clamp(12px,3.2vw,13px); line-height:1.4; text-align:left;
+  }
+  .notice svg{flex:none;width:16px;height:16px;margin-top:1px}
+
+  #install{
+    width:100%; display:none; align-items:center; justify-content:center; gap:9px;
+    padding:15px 20px; border:0; border-radius:13px;
+    background:#fff; color:var(--blue);
+    font-family:inherit; font-size:clamp(14px,3.8vw,15px); font-weight:600;
+    cursor:pointer; box-shadow:0 6px 18px rgba(0,40,70,.20);
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  #install.show{display:flex}
+  #install:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,40,70,.26)}
+  #install:active{transform:translateY(0) scale(.99)}
+  #install svg{width:18px;height:18px}
+
+  :focus-visible{outline:2.5px solid #fff;outline-offset:3px}
+
+  dialog{border:0;padding:0;background:transparent;max-width:100%;max-height:100%;color:#fff}
+  dialog::backdrop{background:rgba(0,25,45,.62);backdrop-filter:blur(3px)}
+  .sheet{
+    width:min(92vw,400px);
+    background:linear-gradient(150deg,#0b8fb8,#0b6ea8);
+    border-radius:20px; padding:26px 24px 22px;
+    box-shadow:0 30px 70px rgba(0,20,40,.5); font-family:var(--font);
+  }
+  .sheet h2{font-size:17px;font-weight:700;margin-bottom:16px}
+  .sheet ol{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:13px;margin-bottom:22px}
+  .sheet li{counter-increment:s;display:flex;gap:12px;align-items:center;font-size:14px;line-height:1.45}
+  .sheet li::before{
+    content:counter(s);flex:none;width:25px;height:25px;border-radius:50%;
+    background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:12px;font-weight:700;
+  }
+  .sheet li svg{width:17px;height:17px;vertical-align:-3px;margin:0 1px}
+  .sheet button{
+    width:100%;padding:13px;border:0;border-radius:11px;background:#fff;color:#0b6ea8;
+    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  }
+
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+  @media (max-height:700px){
+    header img{width:62px}
+    .code img{width:min(42vw,168px)}
+    .code{border-radius:18px}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <img src="mark.png" alt="Enilive">
+    <h1>Enilive VIP</h1>
+    <p class="sub">für Bedienstete der Stadtgemeinde Imst</p>
+  </header>
+
+  <figure class="code">
+    <img src="qr.png" alt="QR-Code">
+    <figcaption>2506013006186</figcaption>
+  </figure>
+
+  <div class="foot">
+    <div class="perks">
+      <div><b>2,5 Cent</b><span>je Liter Treibstoff</span></div>
+      <i></i>
+      <div><b>15 %</b><span>auf Schmiermittel</span></div>
+    </div>
+
+    <p class="station">
+      <b>Enilive Station Venier Imst</b>
+      <span>Bundesstraße 4 · 6460 Imst</span>
+    </p>
+
+    <p class="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.6v.1"/>
+      </svg>
+      <span>Gültig ausschließlich an der Enilive Station Venier Imst. Das Angebot kann jederzeit enden.</span>
+    </p>
+
+    <button id="install" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="2" width="12" height="20" rx="2.6"/><path d="M12 7v7"/><path d="M9 11l3 3 3-3"/>
+      </svg>
+      <span>Zum Home-Bildschirm</span>
+    </button>
+  </div>
+
+  <dialog id="howto">
+    <div class="sheet">
+      <h2>In 3 Schritten aufs Handy</h2>
+      <ol>
+        <li>
+          Unten in Safari auf das Teilen-Symbol tippen
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+          </svg>
+        </li>
+        <li>Etwas nach unten wischen und „Zum Home-Bildschirm“ wählen</li>
+        <li>Rechts oben auf „Hinzufügen“ tippen – fertig</li>
+      </ol>
+      <button type="button" onclick="howto.close()">Verstanden</button>
+    </div>
+  </dialog>
+
+<script>
+  const btn = document.getElementById('install');
+  const howto = document.getElementById('howto');
+  const installed = window.matchMedia('(display-mode: standalone)').matches
+                 || window.navigator.standalone === true;
+  let prompt = null;
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault(); prompt = e;
+    if (!installed) btn.classList.add('show');
+  });
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent)
+             || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!installed && isIOS) btn.classList.add('show');
+
+  btn.addEventListener('click', async () => {
+    if (prompt) {
+      prompt.prompt();
+      const { outcome } = await prompt.userChoice;
+      prompt = null;
+      if (outcome === 'accepted') btn.classList.remove('show');
+    } else {
+      howto.showModal();
+    }
+  });
+
+  window.addEventListener('appinstalled', () => btn.classList.remove('show'));
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+  }
+</script>
+</body>
+</html>

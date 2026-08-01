@@ -1,0 +1,25 @@
+{
+  "name": "Enilive VIP",
+  "short_name": "Enilive VIP",
+  "description": "VIP Code für Bedienstete der Stadtgemeinde Imst",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b7fa8",
+  "theme_color": "#0b7fa8",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
