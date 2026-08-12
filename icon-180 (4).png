@@ -1,7 +1,7 @@
 {
-  "name": "Enilive VIP",
-  "short_name": "Enilive VIP",
-  "description": "VIP Code für Bedienstete der Stadtgemeinde Imst",
+  "name": "Enilive SC Imst",
+  "short_name": "Enilive SC",
+  "description": "Vorteilscodes für Mitglieder des SC Imst 1933",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
