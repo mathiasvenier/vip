@@ -1,19 +1,12 @@
-// Service Worker: macht die Seite offline verfügbar und ermöglicht die
-// "App installieren"-Abfrage unter Android.
-const CACHE = 'enilive-vip-v6';
+const CACHE = 'enilive-sc-v4';
 const ASSETS = [
   './share.png',
   './font/montserrat-400.woff2',
   './font/montserrat-700.woff2',
   './font/montserrat-800.woff2',
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './icon-192.png',
-  './icon-512.png',
-  './icon-180.png',
-  './mark.png',
-  './qr.png'
+  './', './index.html', './manifest.webmanifest',
+  './qr-sprit.png', './qr-zubehoer.png', './mark.png',
+  './icon-180.png', './icon-192.png', './icon-512.png'
 ];
 
 self.addEventListener('install', e => {

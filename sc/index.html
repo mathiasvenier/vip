@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Enilive VIP</title>
+<title>Enilive SC Imst</title>
 <meta name="theme-color" content="#007BA9">
-<meta name="description" content="Für Bedienstete der Stadtgemeinde Imst: 2,5 Cent je Liter Treibstoff und 15 % auf Schmiermittel an der Enilive Station Venier Imst.">
+<meta name="description" content="Für Mitglieder des SC Imst 1933: 2 Cent je Liter Treibstoff und 15 % auf Zubehör, Schmiermittel und Ersatzteile an der Enilive Station Venier Imst.">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Enilive Station Venier Imst">
 <meta property="og:title" content="Enilive VIP – Günstiger tanken in Imst">
-<meta property="og:description" content="Für Bedienstete der Stadtgemeinde Imst: 2,5 Cent je Liter Treibstoff und 15 % auf Schmiermittel an der Enilive Station Venier Imst.">
-<meta property="og:url" content="https://mathiasvenier.github.io/vip/">
-<meta property="og:image" content="https://mathiasvenier.github.io/vip/share.png">
+<meta property="og:description" content="Für Mitglieder des SC Imst 1933: 2 Cent je Liter Treibstoff und 15 % auf Zubehör, Schmiermittel und Ersatzteile an der Enilive Station Venier Imst.">
+<meta property="og:url" content="https://mathiasvenier.github.io/vip/sc/">
+<meta property="og:image" content="https://mathiasvenier.github.io/vip/sc/share.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="de_AT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Enilive VIP – Günstiger tanken in Imst">
-<meta name="twitter:description" content="Für Bedienstete der Stadtgemeinde Imst: 2,5 Cent je Liter Treibstoff und 15 % auf Schmiermittel an der Enilive Station Venier Imst.">
-<meta name="twitter:image" content="https://mathiasvenier.github.io/vip/share.png">
+<meta name="twitter:description" content="Für Mitglieder des SC Imst 1933: 2 Cent je Liter Treibstoff und 15 % auf Zubehör, Schmiermittel und Ersatzteile an der Enilive Station Venier Imst.">
+<meta name="twitter:image" content="https://mathiasvenier.github.io/vip/sc/share.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Enilive VIP">
+<meta name="apple-mobile-web-app-title" content="Enilive SC">
 <link rel="icon" href="icon-192.png">
 <link rel="preload" href="font/montserrat-700.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;
@@ -208,22 +208,35 @@
   <header class="pad">
     <img src="mark.png" alt="Enilive">
     <h1>Enilive VIP</h1>
-    <p class="who">für Bedienstete der<br>Stadtgemeinde Imst</p>
+    <p class="who">für Mitglieder des<br>SC Imst 1933</p>
   </header>
 
-  <div class="deck pad">
-    <div class="solo">
-      <figure class="card"><img src="qr.png" alt="VIP Code"></figure>
+  <div class="deck">
+    <div class="track" id="track">
+
+      <div class="slide on">
+        <figure class="card"><img src="qr-sprit.png" alt="Code Treibstoff"></figure>
+        <div class="perks one">
+          <div><strong>2 Cent</strong><span>je Liter Treibstoff</span></div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <figure class="card"><img src="qr-zubehoer.png" alt="Code Zubehör"></figure>
+        <div class="perks one">
+          <div><strong>15 %</strong><span>auf Zubehör, Schmiermittel und Ersatzteile</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="dots" id="dots">
+      <button type="button" class="on" aria-label="Treibstoff"></button>
+      <button type="button" aria-label="Zubehör"></button>
     </div>
   </div>
 
 
   <div class="foot pad">
-    <div class="perks">
-      <div><strong>2,5 Cent</strong><span>je Liter Treibstoff</span></div>
-      <i></i>
-      <div><strong>15 %</strong><span>auf Schmiermittel</span></div>
-    </div>
 
 
     <p class="station">
@@ -312,6 +325,29 @@
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
   }
+
+  const track = document.getElementById('track');
+  const slides = [...track.children];
+  const dots = [...document.getElementById('dots').children];
+  let ticking = false;
+  function sync(){
+    const mid = track.scrollLeft + track.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    slides.forEach((s,n)=>{
+      const d = Math.abs(s.offsetLeft + s.offsetWidth/2 - mid);
+      if (d < bestDist) { bestDist = d; best = n; }
+    });
+    slides.forEach((s,n)=>s.classList.toggle('on', n===best));
+    dots.forEach((d,n)=>d.classList.toggle('on', n===best));
+  }
+  track.addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(()=>{ sync(); ticking = false; });
+  }, {passive:true});
+  dots.forEach((d,i)=>d.onclick=()=>{
+    slides[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  });
+  sync();
 </script>
 </body>
 </html>
