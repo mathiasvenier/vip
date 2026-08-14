@@ -1,4 +1,4 @@
-const CACHE = 'enilive-sc-v4';
+const CACHE = 'enilive-sc-v5';
 const ASSETS = [
   './share.png',
   './font/montserrat-400.woff2',
